@@ -238,14 +238,6 @@ This would ensure a fully automated and reproducible ML lifecycle.
 
 ---
 
-If you want next, we can:
-
-* Make it even sharper (ultra-compact executive version)
-* Or refine your entire README so the flow feels cohesive and senior-level.
-
-
----
-
 ## End-to-End ML Production Architecture (BigQuery + Vertex AI)
 
 <p align="center">
