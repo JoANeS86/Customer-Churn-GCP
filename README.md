@@ -172,140 +172,77 @@ Once the churn model was validated locally, the training logic was refactored in
 
 ---
 
-# 🔹 Production ML Architecture (Conceptual – Vertex AI)
+# 🔹 Production ML Architecture (Conceptual – GCP)
 
-## From Experimentation to Production
+While experimentation and model validation were performed locally using Jupyter notebooks, the production version of this churn model would be operationalized using **BigQuery and Vertex AI**.
 
-Model development and experimentation were conducted locally using Jupyter notebooks (`01_eda.ipynb`, `02_modeling.ipynb`) for rapid iteration and analytical exploration.
+### Data Layer — BigQuery
 
-In a production environment, the validated training logic would be migrated to **Vertex AI** to ensure scalability, reproducibility, and governance.
-
-The production workflow would follow the architecture below.
-
----
-
-## 🔹 Data Layer – BigQuery as Source of Truth
-
-All feature engineering is performed in **BigQuery**, where a curated `customer_features` table serves as the production-ready dataset.
-
-BigQuery acts as:
-
-* The centralized feature store
-* The single source of truth for training and inference
-* The storage layer for batch prediction outputs
-
-This eliminates dependency on local CSV files and ensures consistency between training and scoring environments.
+All feature engineering is performed in BigQuery, where a curated `customer_features` table serves as the production-ready dataset.
+BigQuery acts as the single source of truth for both training and inference, ensuring consistency and eliminating reliance on local files.
 
 ---
 
-## 🔹 Training – Vertex AI Custom Training Job
+### Training — Vertex AI Custom Job
 
-Once experimentation validated the modeling approach (Logistic Regression with preprocessing and imputation), the logic would be refactored into a production script:
+The validated modeling logic would be refactored into a production script (`train_model.py`) and executed as a **Vertex AI Custom Training Job**.
 
-```
-src/train_model.py
-```
+This would enable:
 
-This script would:
-
-1. Load features directly from BigQuery
-2. Perform preprocessing and imputation
-3. Train the model
-4. Evaluate performance
-5. Save the trained artifact to Cloud Storage
-
-The script would be executed as a **Vertex AI Custom Training Job**, which provides:
-
-* Managed compute infrastructure
-* Reproducible training environments
-* Dependency isolation via `requirements.txt`
-* Training logs and monitoring
-* Automatic artifact storage
-
-This replaces local notebook execution with scalable, versioned cloud training.
+* Reproducible, managed training environments
+* Scalable compute resources
+* Centralized logging and monitoring
+* Artifact storage in Cloud Storage
 
 ---
 
-## 🔹 Model Registry & Versioning
+### Model Registry & Versioning
 
-After successful training, the model artifact would be:
+Trained models would be registered in **Vertex AI Model Registry** to ensure:
 
-* Stored in Cloud Storage
-* Registered in Vertex AI Model Registry
-* Versioned for traceability
-
-This enables:
-
+* Version control
 * Auditability of training runs
 * Controlled promotion to production
-* Rollback to previous model versions if necessary
 
 ---
 
-## 🔹 Inference Strategy – Batch over Real-Time
+### Inference — Batch Prediction
 
-For a churn prediction use case, real-time inference is typically unnecessary. Instead, the recommended approach is:
-
-**Vertex AI Batch Prediction**
+Given the business nature of churn prediction, **batch inference** is preferred over real-time endpoints.
 
 Workflow:
 
 ```
-BigQuery customer table
-        ↓
-Vertex AI Batch Prediction Job
-        ↓
-BigQuery churn_scores table
-```
-
-This approach:
-
-* Is more cost-efficient than managed endpoints
-* Fits business workflows (weekly/monthly churn scoring)
-* Integrates naturally with BI tools (e.g., dashboards)
-
-Real-time endpoints would only be deployed if immediate churn probability scoring were required within transactional systems.
-
----
-
-## 🔹 Pipeline Orchestration (Future Extension)
-
-To fully automate the lifecycle, a **Vertex AI Pipeline** could orchestrate:
-
-1. Feature validation
-2. Model training
-3. Model evaluation
-4. Conditional model registration
-5. Batch prediction execution
-
-This ensures repeatability, automation, and production-grade ML governance.
-
----
-
-## 🔹 Architectural Summary
-
-The end-to-end production design would follow:
-
-```
-BigQuery (Feature Table)
-        ↓
-Vertex AI Custom Training Job
-        ↓
-Model Registry
+BigQuery (customer features)
         ↓
 Vertex AI Batch Prediction
         ↓
-BigQuery (Churn Scores)
+BigQuery (churn_scores table)
 ```
 
-This design separates:
+This approach is cost-efficient, scalable, and aligned with periodic retention analysis workflows.
 
-* Experimentation (local notebooks)
-* Production training (managed jobs)
-* Inference (batch scoring)
-* Data storage (BigQuery)
+---
 
-and aligns with modern cloud-based ML system design.
+### Pipeline Orchestration (Future Extension)
+
+A Vertex AI Pipeline could orchestrate:
+
+1. Feature validation
+2. Model training
+3. Evaluation
+4. Conditional model registration
+5. Batch scoring
+
+This would ensure a fully automated and reproducible ML lifecycle.
+
+---
+
+If you want next, we can:
+
+* Make it even sharper (ultra-compact executive version)
+* Or refine your entire README so the flow feels cohesive and senior-level.
+
 
 ---
 
