@@ -168,6 +168,10 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ---
 
+Once the churn model was validated locally, the training logic was refactored into a production-ready script (train_model.py). In a production environment, this script would be executed as a Vertex AI Custom Training Job, reading features directly from BigQuery and storing model artifacts in Cloud Storage.
+
+---
+
 # 🔹 Production ML Architecture (Conceptual – Vertex AI)
 
 ## From Experimentation to Production
