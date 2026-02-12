@@ -88,7 +88,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * Aggregated service counts
 * Billing behavior ratios
 
-<ins>"Contract" was retained as string for EDA purposes, encoded later in VS Code</ins>.
+*"Contract" was retained as string for EDA purposes, encoded later in VS Code.*
 
 ---
 
