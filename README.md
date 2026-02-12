@@ -8,11 +8,11 @@ Build an end-to-end analytics and machine learning solution on **Google Cloud Pl
 
 ### 2️⃣ Business Framework (PACE)
 
-### **Plan**
+ <ins>**Plan**</ins>
 
 Customer churn reduces recurring revenue. The goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
 
-### **Analyze**
+ <ins>**Analyze**</ins>
 
 * Explore customer demographics, services, and billing data
 * Identify churn patterns and drivers
@@ -20,7 +20,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * Train and evaluate ML models
 * Communicate insights through dashboards
 
-### **Construct**
+ <ins>**Construct**</ins>
 
 * Data warehouse in **BigQuery**
 * SQL-based data transformations and feature engineering
@@ -28,7 +28,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * ML training using **Vertex AI**
 * Visualization with **Looker Studio**
 
-### **Execute**
+ <ins>**Execute**</ins>
 
 * Deliver churn predictions
 * Summarize business insights
@@ -49,17 +49,17 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 
 ### 4️⃣ Data Architecture
 
-### **Cloud Storage**
+ <ins>**Cloud Storage**</ins>
 
 * In a production setup, raw data would be stored in **Cloud Storage**. For this project, data was uploaded directly into **BigQuery** due to billing constraints.
 
-### **BigQuery Datasets**
+ <ins>**BigQuery Datasets**</ins>
 
 * `churn_raw`
 * `churn_staging`
 * `churn_analytics`
 
-### **BigQuery Tables**
+ <ins>**BigQuery Tables**</ins>
 
 1. **`churn_raw.telco_customers`**
 
@@ -106,17 +106,17 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ### 7️⃣ Machine Learning
 
-### **Models**
+ <ins>**Models**</ins>
 
 * Logistic Regression
 
-### **Evaluation Metrics**
+ <ins>**Evaluation Metrics**</ins>
 
 * ROC-AUC
 * Precision / Recall
 * Confusion Matrix
 
-### **Platform**
+ <ins>**Platform**</ins>
 
 * Local Python + **Vertex AI** (safe, limited usage)
 
@@ -124,14 +124,14 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ### 8️⃣ Visualization & Reporting
 
-### **Dashboard (Looker Studio)**
+ <ins>**Dashboard (Looker Studio)**</ins>
 
 * Overall churn rate
 * Churn trends by contract and service
 * High-risk customer segments
 * Key churn drivers
 
-### **Business Recommendations**
+ <ins>**Business Recommendations**</ins>
 
 * Targeted retention strategies
 * Suggested actions per customer segment
@@ -153,7 +153,7 @@ Once the churn model was validated locally, the training logic was refactored in
 
 ---
 
-# 🔹 Production ML Architecture (Conceptual – GCP)
+## 🔹 Production ML Architecture (Conceptual – GCP)
 
 While experimentation and model validation were performed locally using Jupyter notebooks, the production version of this churn model would be operationalized using **BigQuery and Vertex AI**.
 
