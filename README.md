@@ -1,6 +1,6 @@
 ## End-to-End Customer Churn Prediction on Google Cloud
 
-### 1️⃣ Project Objective
+### 1️ Project Objective
 
 Build an end-to-end analytics and machine learning solution on **Google Cloud Platform** to predict customer churn and provide actionable business insights.
 
@@ -12,7 +12,7 @@ Build an end-to-end analytics and machine learning solution on **Google Cloud Pl
 
 Customer churn reduces recurring revenue. The goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
 
-### **Analysis Plan**
+### **Analyze**
 
 * Explore customer demographics, services, and billing data
 * Identify churn patterns and drivers
@@ -38,7 +38,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 
 ### 3️⃣ Tech Stack
 
-* **Google Cloud Storage** – Raw data storage
+* **Google Cloud Storage** – Raw data storage (conceptual production layer)
 * **BigQuery** – Data warehouse & feature engineering
 * **Python** – EDA, ML logic, evaluation
 * **Vertex AI** – Model training & experimentation
@@ -51,7 +51,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 
 ### **Cloud Storage**
 
-* `gs://churn-project-raw/telco_churn.csv`
+* In a production setup, raw data would be stored in **Cloud Storage**. For this project, data was uploaded directly into **BigQuery** due to billing constraints.
 
 ### **BigQuery Datasets**
 
@@ -81,11 +81,14 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 ### 5️⃣ SQL Tasks (BigQuery)
 
 * Create datasets and tables
-* Load raw CSV from Cloud Storage (raw data was ingested into BigQuery using direct file upload due to project billing constraints.)
-* Clean and standardize data
-* Encode categorical variables
-* Create derived features (tenure buckets, service counts, ratios)
-* Build final feature table for ML
+* Load raw CSV into BigQuery
+* Handle missing values
+* Binary encoding (Yes/No)
+* Tenure buckets
+* Aggregated service counts
+* Billing behavior ratios
+
+<ins>"Contract" was retained as string for EDA purposes, encoded later in VS Code</ins>.
 
 ---
 
@@ -101,22 +104,11 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ---
 
-### 7️⃣ Feature Engineering
-
-* Binary encoding (Yes/No)
-* Aggregated service usage
-* Contract type indicators
-* Tenure-based features
-* Billing behavior ratios
-
----
-
-### 8️⃣ Machine Learning
+### 7️⃣ Machine Learning
 
 ### **Models**
 
-* Logistic Regression (baseline & explainability)
-* Tree-based model (AutoML Tables or XGBoost)
+* Logistic Regression
 
 ### **Evaluation Metrics**
 
@@ -130,7 +122,7 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ---
 
-### 9️⃣ Visualization & Reporting
+### 8️⃣ Visualization & Reporting
 
 ### **Dashboard (Looker Studio)**
 
@@ -146,7 +138,7 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ---
 
-### 🔟 Project Deliverables
+### 9️⃣ Project Deliverables
 
 * BigQuery SQL scripts
 * Python notebooks/scripts
@@ -154,17 +146,6 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 * Looker Studio dashboard
 * GitHub repository with README
 * Clear business insights and conclusions
-
----
-
-## 🗓️ Estimated Timeline
-
-* **Week 1** – GCP setup & BigQuery warehouse
-* **Week 2** – SQL transformations & EDA
-* **Week 3** – Feature engineering & baseline ML
-* **Week 4** – Advanced model & evaluation
-* **Week 5** – Dashboard & insights
-* **Week 6** – Vertex AI polish & documentation
 
 ---
 
