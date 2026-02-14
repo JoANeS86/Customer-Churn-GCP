@@ -1,6 +1,6 @@
 ## End-to-End Customer Churn Prediction on Google Cloud
 
-### 1️⃣ Project Objective
+### 1️ Project Objective
 
 Build an end-to-end analytics and machine learning solution on **Google Cloud Platform** to predict customer churn and provide actionable business insights.
 
@@ -8,11 +8,11 @@ Build an end-to-end analytics and machine learning solution on **Google Cloud Pl
 
 ### 2️⃣ Business Framework (PACE)
 
-### **Plan**
+ <ins>**Plan**</ins>
 
 Customer churn reduces recurring revenue. The goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
 
-### **Analysis Plan**
+ <ins>**Analyze**</ins>
 
 * Explore customer demographics, services, and billing data
 * Identify churn patterns and drivers
@@ -20,7 +20,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * Train and evaluate ML models
 * Communicate insights through dashboards
 
-### **Construct**
+ <ins>**Construct**</ins>
 
 * Data warehouse in **BigQuery**
 * SQL-based data transformations and feature engineering
@@ -28,7 +28,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * ML training using **Vertex AI**
 * Visualization with **Looker Studio**
 
-### **Execute**
+ <ins>**Execute**</ins>
 
 * Deliver churn predictions
 * Summarize business insights
@@ -38,7 +38,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 
 ### 3️⃣ Tech Stack
 
-* **Google Cloud Storage** – Raw data storage
+* **Google Cloud Storage** – Raw data storage (conceptual production layer)
 * **BigQuery** – Data warehouse & feature engineering
 * **Python** – EDA, ML logic, evaluation
 * **Vertex AI** – Model training & experimentation
@@ -49,17 +49,17 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 
 ### 4️⃣ Data Architecture
 
-### **Cloud Storage**
+ <ins>**Cloud Storage**</ins>
 
-* `gs://churn-project-raw/telco_churn.csv`
+* In a production setup, raw data would be stored in **Cloud Storage**. For this project, data was uploaded directly into **BigQuery** due to billing constraints.
 
-### **BigQuery Datasets**
+ <ins>**BigQuery Datasets**</ins>
 
 * `churn_raw`
 * `churn_staging`
 * `churn_analytics`
 
-### **BigQuery Tables**
+ <ins>**BigQuery Tables**</ins>
 
 1. **`churn_raw.telco_customers`**
 
@@ -81,11 +81,14 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 ### 5️⃣ SQL Tasks (BigQuery)
 
 * Create datasets and tables
-* Load raw CSV from Cloud Storage (raw data was ingested into BigQuery using direct file upload due to project billing constraints.)
-* Clean and standardize data
-* Encode categorical variables
-* Create derived features (tenure buckets, service counts, ratios)
-* Build final feature table for ML
+* Load raw CSV into BigQuery
+* Handle missing values
+* Binary encoding (Yes/No)
+* Tenure buckets
+* Aggregated service counts
+* Billing behavior ratios
+
+*"Contract" was retained as string for EDA purposes, encoded later in VS Code.*
 
 ---
 
@@ -101,52 +104,41 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ---
 
-### 7️⃣ Feature Engineering
+### 7️⃣ Machine Learning
 
-* Binary encoding (Yes/No)
-* Aggregated service usage
-* Contract type indicators
-* Tenure-based features
-* Billing behavior ratios
+ <ins>**Models**</ins>
 
----
+* Logistic Regression
 
-### 8️⃣ Machine Learning
-
-### **Models**
-
-* Logistic Regression (baseline & explainability)
-* Tree-based model (AutoML Tables or XGBoost)
-
-### **Evaluation Metrics**
+ <ins>**Evaluation Metrics**</ins>
 
 * ROC-AUC
 * Precision / Recall
 * Confusion Matrix
 
-### **Platform**
+ <ins>**Platform**</ins>
 
 * Local Python + **Vertex AI** (safe, limited usage)
 
 ---
 
-### 9️⃣ Visualization & Reporting
+### 8️⃣ Visualization & Reporting
 
-### **Dashboard (Looker Studio)**
+ <ins>**Dashboard (Looker Studio)**</ins>
 
 * Overall churn rate
 * Churn trends by contract and service
 * High-risk customer segments
 * Key churn drivers
 
-### **Business Recommendations**
+ <ins>**Business Recommendations**</ins>
 
 * Targeted retention strategies
 * Suggested actions per customer segment
 
 ---
 
-### 🔟 Project Deliverables
+### 9️⃣ Project Deliverables
 
 * BigQuery SQL scripts
 * Python notebooks/scripts
@@ -157,11 +149,84 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ---
 
-## 🗓️ Estimated Timeline
+Once the churn model was validated locally, the training logic was refactored into a production-ready script (train_model.py). In a production environment, this script would be executed as a Vertex AI Custom Training Job, reading features directly from BigQuery and storing model artifacts in Cloud Storage.
 
-* **Week 1** – GCP setup & BigQuery warehouse
-* **Week 2** – SQL transformations & EDA
-* **Week 3** – Feature engineering & baseline ML
-* **Week 4** – Advanced model & evaluation
-* **Week 5** – Dashboard & insights
-* **Week 6** – Vertex AI polish & documentation
+---
+
+## 🔹 Production ML Architecture (Conceptual – GCP)
+
+While experimentation and model validation were performed locally using Jupyter notebooks, the production version of this churn model would be operationalized using **BigQuery and Vertex AI**.
+
+### Data Layer — BigQuery
+
+All feature engineering is performed in BigQuery, where a curated `customer_features` table serves as the production-ready dataset.
+BigQuery acts as the single source of truth for both training and inference, ensuring consistency and eliminating reliance on local files.
+
+---
+
+### Training — Vertex AI Custom Job
+
+The validated modeling logic would be refactored into a production script (`train_model.py`) and executed as a **Vertex AI Custom Training Job**.
+
+This would enable:
+
+* Reproducible, managed training environments
+* Scalable compute resources
+* Centralized logging and monitoring
+* Artifact storage in Cloud Storage
+
+---
+
+### Model Registry & Versioning
+
+Trained models would be registered in **Vertex AI Model Registry** to ensure:
+
+* Version control
+* Auditability of training runs
+* Controlled promotion to production
+
+---
+
+### Inference — Batch Prediction
+
+Given the business nature of churn prediction, **batch inference** is preferred over real-time endpoints.
+
+Workflow:
+
+```
+BigQuery (customer features)
+        ↓
+Vertex AI Batch Prediction
+        ↓
+BigQuery (churn_scores table)
+```
+
+This approach is cost-efficient, scalable, and aligned with periodic retention analysis workflows.
+
+---
+
+### Pipeline Orchestration (Future Extension)
+
+A Vertex AI Pipeline could orchestrate:
+
+1. Feature validation
+2. Model training
+3. Evaluation
+4. Conditional model registration
+5. Batch scoring
+
+This would ensure a fully automated and reproducible ML lifecycle.
+
+---
+
+## End-to-End ML Production Architecture (BigQuery + Vertex AI)
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/ccfc4fdb-b2db-429e-876a-bdf25734232b" />
+</p><br/><br/>
+
+
+
+
+
+
