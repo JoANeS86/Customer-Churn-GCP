@@ -1,16 +1,35 @@
 # End-to-End Customer Churn Prediction on Google Cloud
 
-### 1️ Project Objective
+In this project, we're building an end-to-end analytics and machine learning solution on **Google Cloud Platform** to predict customer churn and provide actionable business insights: Customer churn reduces recurring revenue, therefore the goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
 
-Build an end-to-end analytics and machine learning solution on **Google Cloud Platform** to predict customer churn and provide actionable business insights.
+## Project Process
+
+<p align="center">
+<img src="https://github.com/user-attachments/assets/ba360102-1590-49f6-8824-2e10dec2635e" />
+</p>
 
 ---
+
+## Tools
+
+* **Google Cloud Storage** – Raw data storage (conceptual production layer)
+* **BigQuery** – Data warehouse & feature engineering
+* **Python** – EDA, ML logic, evaluation
+* **Vertex AI** – Production training architecture (conceptual implementation)
+* **Looker Studio** – Business dashboard
+* **GitHub** – Code, documentation, version control
+
+---
+
+## Detailed Project Process
+
+
 
 ### 2️⃣ Business Framework (PACE)
 
  <ins>**Plan**</ins>
 
-Customer churn reduces recurring revenue. The goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
+
 
  <ins>**Analyze**</ins>
 
@@ -33,17 +52,6 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * Deliver churn predictions
 * Summarize business insights
 * Recommend retention strategies
-
----
-
-### 3️⃣ Tech Stack
-
-* **Google Cloud Storage** – Raw data storage (conceptual production layer)
-* **BigQuery** – Data warehouse & feature engineering
-* **Python** – EDA, ML logic, evaluation
-* **Vertex AI** – Production training architecture (conceptual implementation)
-* **Looker Studio** – Business dashboard
-* **GitHub** – Code, documentation, version control
 
 ---
 
