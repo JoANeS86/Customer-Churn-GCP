@@ -25,7 +25,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * Data warehouse in **BigQuery**
 * SQL-based data transformations and feature engineering
 * Python-based EDA and modeling
-* ML training using **Vertex AI**
+* Production-ready ML training designed for **Vertex AI** (executed locally for this project)**
 * Visualization with **Looker Studio**
 
  <ins>**Execute**</ins>
@@ -41,7 +41,7 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 * **Google Cloud Storage** – Raw data storage (conceptual production layer)
 * **BigQuery** – Data warehouse & feature engineering
 * **Python** – EDA, ML logic, evaluation
-* **Vertex AI** – Model training & experimentation
+* **Vertex AI** – Production training architecture (conceptual implementation)
 * **Looker Studio** – Business dashboard
 * **GitHub** – Code, documentation, version control
 
@@ -74,7 +74,14 @@ Customer churn reduces recurring revenue. The goal is to identify customers at h
 
    * One row per customer
    * ML-ready features
-   * Target variable (`churn`)
+   * Target variable (`churn_flag`)
+  
+4. **`churn_analytics.churn_scores`**
+
+   * Model-generated churn predictions
+   * Stores churn probability and binary prediction
+   * Timestamped batch scoring results
+   * Designed for downstream analytics in Looker Studio
 
 ---
 
@@ -118,7 +125,7 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
  <ins>**Platform**</ins>
 
-* Local Python + **Vertex AI** (safe, limited usage)
+* Platform – Local Python (production-ready for **Vertex AI** deployment)
 
 ---
 
@@ -142,8 +149,8 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 * BigQuery SQL scripts
 * Python notebooks/scripts
-* Vertex AI training configuration
-* Looker Studio dashboard
+* Production-ready training script compatible with **Vertex AI** Custom Jobs
+* [Looker Studio dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF)
 * GitHub repository with README
 * Clear business insights and conclusions
 
