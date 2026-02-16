@@ -7,7 +7,7 @@ The objective is to identify high-risk customers and uncover the key drivers beh
 ## Project Architecture and Workflow
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/61850ee8-cf63-4006-a44c-50840e878304" />
+<img src="https://github.com/user-attachments/assets/0b137b93-eb29-4d6a-bc04-a7161aa63f9b" />
 </p>
 
 ---
