@@ -109,7 +109,7 @@ Results coming from *predict.py* were loaded into a new table in the churn analy
 
 ### <ins>3. Looker Studio Dashboard</ins>
 
-The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF) was created utilizing data coming from the `customer_features` and `churn_scores` tables in BigQuery. This dashboard contains:
+The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF) was created utilizing data coming from the **`customer_features`** and **`churn_scores`** tables in BigQuery. This dashboard contains:
 
 * Overall churn rate
 * Churn trends by contract and service
