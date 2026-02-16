@@ -21,9 +21,20 @@ In this project, we're building an end-to-end analytics and machine learning sol
 
 ---
 
+## Project Deliverables
+
+* BigQuery SQL scripts
+* Python notebooks/scripts
+* Production-ready training script compatible with **Vertex AI** Custom Jobs
+* [Looker Studio dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF)
+* GitHub repository with README
+* Clear business insights and conclusions
+
+---
+
 ## Detailed Project Process
 
-### BigQuery Data Setup
+### <ins>1. BigQuery Data Setup</ins>
 
 * Create datasets and tables
 * Load raw CSV into BigQuery (In a production setup, raw data would be stored in **Cloud Storage**, but this case data was uploaded directly into **BigQuery** due to billing constraints)
@@ -60,9 +71,9 @@ In this project, we're building an end-to-end analytics and machine learning sol
 
    * One row per customer
    * ML-ready features
-   * Target variable (`churn_flag`)
+   * Target variable (churn_flag)
 
-### EDA and Modeling in VS Code (Python)
+### <ins>2. EDA and Modeling in VS Code (Python)</ins>
 
 EDA and Modeling performed locally in Python using Jupyter Notebooks, querying the analytical tables hosted in BigQuery.
 
@@ -83,87 +94,45 @@ EDA and Modeling performed locally in Python using Jupyter Notebooks, querying t
    - Precision / Recall
    - Confusion Matrix
 
-Once the churn model was validated locally, its logic was refactored into production-ready scripts (train_model.py, evaluate.py, and predict.py). In a production environment, train_model.py would be executed as a **Vertex AI Custom Training Job**, reading features directly from **BigQuery** and storing model artifacts in **Cloud Storage**.
+Once the churn model was validated locally, its logic was refactored into production-ready scripts (*train_model.py*, *evaluate.py*, and *predict.py*). In a production environment, *train_model.py* would be executed as a **Vertex AI Custom Training Job**, reading features directly from **BigQuery** and storing model artifacts in **Cloud Storage**.
 
+Results coming from *predict.py* were loaded into a new table in the churn analytics dataset:
 
-
-
-### 2️⃣ Business Framework (PACE)
-
- <ins>**Plan**</ins>
-
-
-
- <ins>**Analyze**</ins>
-
-* Explore customer demographics, services, and billing data
-* Identify churn patterns and drivers
-* Engineer predictive features
-* Train and evaluate ML models
-* Communicate insights through dashboards
-
- <ins>**Construct**</ins>
-
-* Data warehouse in **BigQuery**
-* SQL-based data transformations and feature engineering
-* Python-based EDA and modeling
-* Production-ready ML training designed for **Vertex AI** (executed locally for this project)**
-* Visualization with **Looker Studio**
-
- <ins>**Execute**</ins>
-
-* Deliver churn predictions
-* Summarize business insights
-* Recommend retention strategies
-
----
-
-### 4️⃣ Data Architecture
-
- <ins>**Cloud Storage**</ins>
-
-* 
-
-
-  
 4. **`churn_analytics.churn_scores`**
 
-   * Model-generated churn predictions
-   * Stores churn probability and binary prediction
-   * Timestamped batch scoring results
-   * Designed for downstream analytics in Looker Studio
+    * Model-generated churn predictions
+    * Stores churn probability and binary prediction
+    * Timestamped batch scoring results
+    * Designed for downstream analytics in Looker Studio
 
----
+### <ins>3.Looker Studio Dashboard</ins>
 
-
----
-
-### 8️⃣ Visualization & Reporting
-
- <ins>**Dashboard (Looker Studio)**</ins>
+The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF) was created utilizing data coming from the `customer_features` and `churn_scores` tables in BigQuery. This dashboard contains:
 
 * Overall churn rate
 * Churn trends by contract and service
 * High-risk customer segments
 * Key churn drivers
+* Business Recommendations
+  
+  * Targeted retention strategies
+  * Suggested actions per customer segment
 
- <ins>**Business Recommendations**</ins>
 
-* Targeted retention strategies
-* Suggested actions per customer segment
 
----
 
-### 9️⃣ Project Deliverables
 
-* BigQuery SQL scripts
-* Python notebooks/scripts
-* Production-ready training script compatible with **Vertex AI** Custom Jobs
-* [Looker Studio dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF)
-* GitHub repository with README
-* Clear business insights and conclusions
 
----
+
+
+  
+
+
+
+
+
+
+
 
 
 
