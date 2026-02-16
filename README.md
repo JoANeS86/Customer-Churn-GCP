@@ -16,7 +16,7 @@ The objective is to identify high-risk customers and uncover the key drivers beh
 
 * **Google Cloud Storage** – Raw data storage (conceptual production layer)
 * **BigQuery** – Data warehouse & feature engineering
-* **Python** – EDA, ML logic, evaluation
+* **VS Code (Python)** – EDA, ML logic, evaluation
 * **Vertex AI** – Production training architecture (conceptual implementation)
 * **Looker Studio** – Business dashboard
 * **GitHub** – Code, documentation, version control
