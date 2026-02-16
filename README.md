@@ -23,6 +23,69 @@ In this project, we're building an end-to-end analytics and machine learning sol
 
 ## Detailed Project Process
 
+### BigQuery Data Setup
+
+* Create datasets and tables
+* Load raw CSV into BigQuery (In a production setup, raw data would be stored in **Cloud Storage**, but this case data was uploaded directly into **BigQuery** due to billing constraints)
+* Feature Engineering:
+  
+   - Handle missing values
+   - Binary encoding (Yes/No)
+   - Tenure buckets
+   - Aggregated service counts
+   - Billing behavior ratios
+
+    *"Contract" was retained as string for EDA purposes, encoded later in VS Code.*
+
+<ins>**Final Data Architecture in BigQuery**</ins>:
+
+ <ins>BigQuery Datasets</ins>
+
+* `churn_raw`
+* `churn_staging`
+* `churn_analytics`
+
+ <ins>BigQuery Tables</ins>
+
+1. **`churn_raw.telco_customers`**
+
+   * Raw ingested data (no transformations)
+
+2. **`churn_staging.customers_clean`**
+
+   * Cleaned and standardized data
+   * Type casting and null handling
+
+3. **`churn_analytics.customer_features`**
+
+   * One row per customer
+   * ML-ready features
+   * Target variable (`churn_flag`)
+
+### EDA and Modeling in VS Code (Python)
+
+EDA and Modeling performed locally in Python using Jupyter Notebooks, querying the analytical tables hosted in BigQuery.
+
+* EDA
+ 
+   - Churn rate overview
+   - Feature distributions
+   - Churn by customer segment
+   - Correlation analysis
+     
+* Model
+
+   - Logistic Regression
+
+* Evaluation Metrics
+
+   - ROC-AUC
+   - Precision / Recall
+   - Confusion Matrix
+
+Once the churn model was validated locally, its logic was refactored into production-ready scripts (train_model.py, evaluate.py, and predict.py). In a production environment, train_model.py would be executed as a **Vertex AI Custom Training Job**, reading features directly from **BigQuery** and storing model artifacts in **Cloud Storage**.
+
+
 
 
 ### 2️⃣ Business Framework (PACE)
@@ -59,30 +122,9 @@ In this project, we're building an end-to-end analytics and machine learning sol
 
  <ins>**Cloud Storage**</ins>
 
-* In a production setup, raw data would be stored in **Cloud Storage**. For this project, data was uploaded directly into **BigQuery** due to billing constraints.
+* 
 
- <ins>**BigQuery Datasets**</ins>
 
-* `churn_raw`
-* `churn_staging`
-* `churn_analytics`
-
- <ins>**BigQuery Tables**</ins>
-
-1. **`churn_raw.telco_customers`**
-
-   * Raw ingested data (no transformations)
-
-2. **`churn_staging.customers_clean`**
-
-   * Cleaned and standardized data
-   * Type casting and null handling
-
-3. **`churn_analytics.customer_features`**
-
-   * One row per customer
-   * ML-ready features
-   * Target variable (`churn_flag`)
   
 4. **`churn_analytics.churn_scores`**
 
@@ -93,47 +135,6 @@ In this project, we're building an end-to-end analytics and machine learning sol
 
 ---
 
-### 5️⃣ SQL Tasks (BigQuery)
-
-* Create datasets and tables
-* Load raw CSV into BigQuery
-* Handle missing values
-* Binary encoding (Yes/No)
-* Tenure buckets
-* Aggregated service counts
-* Billing behavior ratios
-
-*"Contract" was retained as string for EDA purposes, encoded later in VS Code.*
-
----
-
-### 6️⃣ Exploratory Data Analysis (Python)
-
-Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplotlib) in Jupyter.
-
-* Churn rate overview
-* Feature distributions
-* Churn by customer segment
-* Correlation analysis
-* Data leakage checks
-
----
-
-### 7️⃣ Machine Learning
-
- <ins>**Models**</ins>
-
-* Logistic Regression
-
- <ins>**Evaluation Metrics**</ins>
-
-* ROC-AUC
-* Precision / Recall
-* Confusion Matrix
-
- <ins>**Platform**</ins>
-
-* Platform – Local Python (production-ready for **Vertex AI** deployment)
 
 ---
 
@@ -164,7 +165,7 @@ Conducted EDA on BigQuery-hosted analytical tables using Python (Pandas, Matplot
 
 ---
 
-Once the churn model was validated locally, the training logic was refactored into a production-ready script (train_model.py). In a production environment, this script would be executed as a Vertex AI Custom Training Job, reading features directly from BigQuery and storing model artifacts in Cloud Storage.
+
 
 ---
 
