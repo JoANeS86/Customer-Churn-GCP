@@ -94,7 +94,7 @@ EDA and Modeling performed locally in Python using Jupyter Notebooks, querying t
    - Precision / Recall
    - Confusion Matrix
 
-Once the churn model was validated locally, its logic was refactored into production-ready scripts (*train_model.py*, *evaluate.py*, and *predict.py*). In a production environment, *train_model.py* would be executed as a **Vertex AI Custom Training Job**, reading features directly from **BigQuery** and storing model artifacts in **Cloud Storage**. [Go to Conclusion](#conceptual-ml-in-google-cloud-platform)
+Once the churn model was validated locally, its logic was refactored into production-ready scripts (*train_model.py*, *evaluate.py*, and *predict.py*). In a production environment, *train_model.py* would be executed as a **Vertex AI Custom Training Job**, reading features directly from **BigQuery** and storing model artifacts in **Cloud Storage** (This is explained below, in section [Conceptual ML in GCP](#conceptual-ml-in-google-cloud-platform)).
 
 Results coming from *predict.py* were loaded into a new table in the churn analytics dataset:
 
