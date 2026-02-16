@@ -113,10 +113,7 @@ The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.c
 * Churn trends by contract and service
 * High-risk customer segments
 * Key churn drivers
-* Business Recommendations
-  
-  * Targeted retention strategies
-  * Suggested actions per customer segment
+* Business Recommendations (Targeted retention strategies and suggested actions per customer segment)
 
 ---
 
