@@ -1,8 +1,10 @@
 # End-to-End Customer Churn Prediction on Google Cloud
 
-In this project, we're utilizing the [Telco Customer Churn Dataset](https://github.com/JoANeS86/Customer-Churn-GCP/blob/main/docs/telco_churn.csv) for building an end-to-end analytics and machine learning solution on **Google Cloud Platform** to predict customer churn and provide actionable business insights: Customer churn reduces recurring revenue, therefore the goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
+This project implements an end-to-end customer churn prediction system on **Google Cloud Platform** using the [Telco Customer Churn Dataset](https://github.com/JoANeS86/Customer-Churn-GCP/blob/main/docs/telco_churn.csv).
 
-## Project Process
+The objective is to identify high-risk customers and uncover the key drivers behind churn behavior, enabling data-driven retention strategies and protecting recurring revenue.
+
+## Project Architecture and Workflow
 
 <p align="center">
 <img src="https://github.com/user-attachments/assets/ba360102-1590-49f6-8824-2e10dec2635e" />
@@ -32,7 +34,7 @@ In this project, we're utilizing the [Telco Customer Churn Dataset](https://gith
 
 ---
 
-## Detailed Project Process
+## Detailed Project Architecture and Workflow
 
 ### <ins>1. BigQuery Data Setup</ins>
 
@@ -105,7 +107,7 @@ Results coming from *predict.py* were loaded into a new table in the churn analy
     * Timestamped batch scoring results
     * Designed for downstream analytics in Looker Studio
 
-### <ins>3.Looker Studio Dashboard</ins>
+### <ins>3. Looker Studio Dashboard</ins>
 
 The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF) was created utilizing data coming from the `customer_features` and `churn_scores` tables in BigQuery. This dashboard contains:
 
@@ -138,9 +140,9 @@ Trained models would be registered in **Vertex AI Model Registry** to ensure:
 
 Given the business nature of churn prediction, batch inference is preferred over real-time endpoints (This approach is cost-efficient, scalable, and aligned with periodic retention analysis workflows):
 
-    BigQuery (customer features) --> Vertex AI Batch Prediction --> BigQuery (churn_scores table)
+    BigQuery (customer features) → Vertex AI Batch Prediction → BigQuery (churn_scores table)
 
-A Vertex AI Pipeline could orchestrate:
+In a production deployment, a Vertex AI Pipeline would orchestrate:
 
 1. Feature validation
 2. Model training
