@@ -1,6 +1,6 @@
 # End-to-End Customer Churn Prediction on Google Cloud
 
-In this project, we're utilizing the [Telco Customer Churn Dataset](https://github.com/JoANeS86/Customer-Churn-GCP/blob/main/docs/telco_churn.csv) to build an end-to-end analytics and machine learning solution on **Google Cloud Platform** to predict customer churn and provide actionable business insights: Customer churn reduces recurring revenue, therefore the goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
+In this project, we're utilizing the [Telco Customer Churn Dataset](https://github.com/JoANeS86/Customer-Churn-GCP/blob/main/docs/telco_churn.csv) for building an end-to-end analytics and machine learning solution on **Google Cloud Platform** to predict customer churn and provide actionable business insights: Customer churn reduces recurring revenue, therefore the goal is to identify customers at high risk of churn and understand the main drivers behind churn behavior.
 
 ## Project Process
 
