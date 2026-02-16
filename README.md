@@ -37,7 +37,7 @@ In this project, we're utilizing the [Telco Customer Churn Dataset](https://gith
 ### <ins>1. BigQuery Data Setup</ins>
 
 * Create datasets and tables
-* Load raw CSV into BigQuery (In a production setup, raw data would be stored in **Cloud Storage**, but this case data was uploaded directly into **BigQuery** due to billing constraints)
+* Load raw CSV into BigQuery (In a production setup, raw data would be stored in **Cloud Storage**, but in this case data was uploaded directly into **BigQuery** due to billing constraints)
 * Feature Engineering:
   
    - Handle missing values
