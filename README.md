@@ -25,7 +25,7 @@ In this project, we're utilizing the [Telco Customer Churn Dataset](https://gith
 
 * BigQuery SQL scripts
 * Python notebooks/scripts
-* Production-ready training script compatible with **Vertex AI** Custom Jobs
+* Production-ready training script compatible with Vertex AI Custom Jobs
 * [Looker Studio dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF)
 * GitHub repository with README
 * Clear business insights and conclusions
@@ -122,7 +122,7 @@ The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.c
 
 ## Conceptual ML in Google Cloud Platform
 
-While experimentation and model validation were performed locally using Jupyter notebooks, the production version of this churn model would be operationalized using **BigQuery and Vertex AI**.
+While experimentation and model validation were performed locally using Jupyter notebooks, the production version of this churn model would be operationalized using **BigQuery** and **Vertex AI**.
 
 As mentioned above, the validated modeling logic would be refactored into a production script (*train_model.py*) and executed as a **Vertex AI Custom Training Job**.
 
@@ -139,7 +139,7 @@ Trained models would be registered in **Vertex AI Model Registry** to ensure:
 * Auditability of training runs
 * Controlled promotion to production
 
-Given the business nature of churn prediction, **batch inference** is preferred over real-time endpoints (This approach is cost-efficient, scalable, and aligned with periodic retention analysis workflows):
+Given the business nature of churn prediction, batch inference is preferred over real-time endpoints (This approach is cost-efficient, scalable, and aligned with periodic retention analysis workflows):
 
     BigQuery (customer features) --> Vertex AI Batch Prediction --> BigQuery (churn_scores table)
 
