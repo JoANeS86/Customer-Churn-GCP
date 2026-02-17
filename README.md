@@ -90,9 +90,9 @@ EDA and Modeling performed locally in Python using Jupyter Notebooks, querying t
 
 * Evaluation Metrics
 
-   - ROC-AUC
-   - Precision / Recall
    - Confusion Matrix
+   - Precision / Recall
+   - ROC-AUC
 
 Once the churn model was validated locally, its logic was refactored into production-ready scripts (*train_model.py*, *evaluate.py*, and *predict.py*). In a production environment, *train_model.py* would be executed as a **Vertex AI Custom Training Job**, reading features directly from **BigQuery** and storing model artifacts in **Cloud Storage** (This is explained below, in section [Conceptual ML in GCP](#conceptual-ml-in-google-cloud-platform)).
 
