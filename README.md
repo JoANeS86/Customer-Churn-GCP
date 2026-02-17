@@ -66,12 +66,10 @@ The objective is to identify high-risk customers and uncover the key drivers beh
 
 2. **`churn_staging.customers_clean`**
 
-   * Cleaned and standardized data
    * Type casting and null handling
 
 3. **`churn_analytics.customer_features`**
 
-   * One row per customer
    * ML-ready features
    * Target variable (churn_flag)
 
