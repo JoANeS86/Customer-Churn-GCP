@@ -7,7 +7,7 @@ The objective is to identify high-risk customers and uncover the key drivers beh
 ## Project Architecture and Workflow
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/61850ee8-cf63-4006-a44c-50840e878304" />
+<img src="https://github.com/user-attachments/assets/0b137b93-eb29-4d6a-bc04-a7161aa63f9b" />
 </p>
 
 ---
@@ -16,7 +16,7 @@ The objective is to identify high-risk customers and uncover the key drivers beh
 
 * **Google Cloud Storage** – Raw data storage (conceptual production layer)
 * **BigQuery** – Data warehouse & feature engineering
-* **Python** – EDA, ML logic, evaluation
+* **VS Code (Python)** – EDA, ML logic, evaluation
 * **Vertex AI** – Production training architecture (conceptual implementation)
 * **Looker Studio** – Business dashboard
 * **GitHub** – Code, documentation, version control
@@ -66,12 +66,10 @@ The objective is to identify high-risk customers and uncover the key drivers beh
 
 2. **`churn_staging.customers_clean`**
 
-   * Cleaned and standardized data
    * Type casting and null handling
 
 3. **`churn_analytics.customer_features`**
 
-   * One row per customer
    * ML-ready features
    * Target variable (churn_flag)
 
@@ -92,9 +90,9 @@ EDA and Modeling performed locally in Python using Jupyter Notebooks, querying t
 
 * Evaluation Metrics
 
-   - ROC-AUC
-   - Precision / Recall
    - Confusion Matrix
+   - Precision / Recall
+   - ROC-AUC
 
 Once the churn model was validated locally, its logic was refactored into production-ready scripts (*train_model.py*, *evaluate.py*, and *predict.py*). In a production environment, *train_model.py* would be executed as a **Vertex AI Custom Training Job**, reading features directly from **BigQuery** and storing model artifacts in **Cloud Storage** (This is explained below, in section [Conceptual ML in GCP](#conceptual-ml-in-google-cloud-platform)).
 
@@ -109,7 +107,7 @@ Results coming from *predict.py* were loaded into a new table in the churn analy
 
 ### <ins>3. Looker Studio Dashboard</ins>
 
-The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF) was created utilizing data coming from the `customer_features` and `churn_scores` tables in BigQuery. This dashboard contains:
+The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF) was created utilizing data coming from the **`customer_features`** and **`churn_scores`** tables in BigQuery. This dashboard contains:
 
 * Overall churn rate
 * Churn trends by contract and service
