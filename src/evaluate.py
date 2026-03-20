@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
+from pathlib import Path
 import joblib
 
 
@@ -18,7 +19,13 @@ import joblib
 # Load trained pipeline
 # -----------------------------
 
-model = joblib.load("artifacts/model.pkl")
+# Get the project root (parent of src)
+BASE_DIR = Path(__file__).parent.parent
+
+ARTIFACTS_DIR = BASE_DIR / "artifacts"
+MODEL_PATH = ARTIFACTS_DIR / "model.pkl"
+
+model = joblib.load(MODEL_PATH)
 
 # -----------------------------
 # Reload dataset

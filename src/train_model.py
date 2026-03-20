@@ -19,6 +19,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
+from pathlib import Path
 import joblib
 import os
 
@@ -84,7 +85,14 @@ pipeline.fit(X_train, y_train)
 # Save Artifact
 # -----------------------------
 
-os.makedirs("artifacts", exist_ok=True)
-joblib.dump(pipeline, "artifacts/model.pkl")
+# Get the project root (parent of src)
+BASE_DIR = Path(__file__).parent.parent
+
+# Make sure artifacts folder exists
+ARTIFACTS_DIR = BASE_DIR / "artifacts"
+ARTIFACTS_DIR.mkdir(exist_ok=True, parents=True)
+
+# Save model
+joblib.dump(pipeline, ARTIFACTS_DIR / "model.pkl")
 
 print("Training completed and model artifact saved.")

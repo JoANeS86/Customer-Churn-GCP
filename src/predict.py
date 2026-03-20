@@ -10,12 +10,19 @@ from google.cloud import bigquery
 import pandas as pd
 import joblib
 from datetime import datetime
+from pathlib import Path
 
 # -----------------------------
-# Load trained pipeline
+# Load trained pipeline (robust path)
 # -----------------------------
 
-model = joblib.load("artifacts/model.pkl")
+# Get the project root (parent of src)
+BASE_DIR = Path(__file__).parent.parent
+
+ARTIFACTS_DIR = BASE_DIR / "artifacts"
+MODEL_PATH = ARTIFACTS_DIR / "model.pkl"
+
+model = joblib.load(MODEL_PATH)
 
 # -----------------------------
 # Load feature table
