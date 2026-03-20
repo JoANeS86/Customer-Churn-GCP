@@ -110,9 +110,9 @@ Results coming from *predict.py* were loaded into a new table in the churn analy
 The [Customer Churn Risk and Prediction Dashboard](https://lookerstudio.google.com/reporting/6bb5b49b-8201-40e5-b064-bb75a7a34ec3/page/a9aoF) was created utilizing data coming from the **`customer_features`** and **`churn_scores`** tables in BigQuery. This dashboard contains:
 
 * Overall churn rate
-* Churn trends by contract and service
-* High-risk customer segments
-* Key churn drivers
+* Churn trends by contract and tenure bucket
+* High-risk customers (Churn Probability > 70%)
+* Churn probability distribution and customer segmentation insights
 * Business Recommendations (Targeted retention strategies and suggested actions per customer segment)
 
 ---
